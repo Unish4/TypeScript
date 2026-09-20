@@ -1,13 +1,33 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    // ES2022 is fully supported by current Node, so no downleveling needed.
+    "target": "ES2022",
+    "lib": ["ES2022"],
+
+    // Your package.json says "type": "commonjs", so the emitted JS must be
+    // CommonJS (require/module.exports). If this said ESNext, `node dist/...`
+    // would crash on the first import statement.
+    "module": "CommonJS",
+    "moduleDetection": "force",
+    "types": ["node"],
+
+    // Compiled JS goes here. Without outDir, tsc writes .js files next to
+    // your .ts files and clutters src/.
     "outDir": "dist",
-    "rootDir": "src"
+    // Makes src/ the root, so src/session-01.ts becomes dist/session-01.js.
+    // Without it, tsc may nest output as dist/src/session-01.js and your
+    // `node dist/session-01.js` path would break.
+    "rootDir": "src",
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // The old "noEmit": true is gone on purpose. Emitting is the point now.
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"]
 }
