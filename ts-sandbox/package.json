@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/session-02.ts && tsc --project tsconfig.json",
+    "dev": "ts-node src/session-04.ts && tsc --project tsconfig.json",
     "build": "node dist/session-01.js"
   },
   "keywords": [],
